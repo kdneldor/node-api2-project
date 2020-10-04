@@ -1,5 +1,5 @@
 const express = require("express");
-const posts = require("./posts-model");
+const posts = require("../data/db");
 const router = express.Router();
 
 // GET REQUEST FOR POSTS
@@ -145,21 +145,23 @@ router.post("/posts/:id/comments", (req, res) => {
 // GET REQUEST FOR COMMENTS
 
 router.get("", (req, res) => {
-    posts.findPostComments(req.params.id)
+  posts
+    .findPostComments(req.params.id)
     .then((comments) => {
-       if (comments) {
-           res.json(comments);
-       } else {
-           res.status(404).json({
-               message: "The post with the specified ID does not exist."
-           })
-       }
+      if (comments) {
+        res.json(comments);
+      } else {
+        res.status(404).json({
+          message: "The post with the specified ID does not exist.",
+        });
+      }
     })
     .catch((error) => {
-        console.log(error);
-        res.status(500).json({
-          error: "The comments information could not be retrieved.",
-        });
+      console.log(error);
+      res.status(500).json({
+        error: "The comments information could not be retrieved.",
       });
-    
-})
+    });
+});
+
+module.exports = router;

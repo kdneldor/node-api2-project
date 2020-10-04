@@ -97,7 +97,7 @@ When the client makes a `GET` request to `/api/posts/:id`: WRITTEN
   - respond with HTTP status code `500`.
   - return the following JSON object: `{ error: "The post information could not be retrieved." }`.
 
-When the client makes a `GET` request to `/api/posts/:id/comments`:
+When the client makes a `GET` request to `/api/posts/:id/comments`: WRITTEN
 
 - If the _post_ with the specified `id` is not found:
 
